@@ -4,6 +4,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.views.generic import list_detail
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from basic.profiles.models import *
 from basic.profiles.forms import *
 
@@ -44,7 +45,7 @@ def profile_edit(request, template_name='profiles/profile_form.html'):
             user_form.save()
             service_formset.save()
             link_formset.save()
-            return HttpResponseRedirect(reverse('profile_public', args=(request.user.username,)))
+            return HttpResponseRedirect(reverse('profile_detail', kwargs={'username': request.user.username}))
         else:
             context = {
                 'profile_form': profile_form, 
