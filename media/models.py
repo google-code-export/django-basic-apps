@@ -33,7 +33,7 @@ class Audio(models.Model):
   """ Audio model """
   title         = models.CharField(max_length=255)
   slug          = models.SlugField()
-  still         = models.FileField(upload_to=settings.MEDIA_ROOT+'audio_stills/', blank=True, help_text='An image that will be used as a thumbnail.')
+  still         = models.FileField(upload_to='audio_stills', blank=True, help_text='An image that will be used as a thumbnail.')
   audio         = models.FilePathField(path=settings.MEDIA_ROOT+'audios/', recursive=True)
   description   = models.TextField(blank=True)
   tags          = TagField()
@@ -49,10 +49,6 @@ class Audio(models.Model):
 
   def __unicode__(self):
     return '%s' % self.title
-
-  @property
-  def url(self):
-    return self.audio.replace(settings.MEDIA_ROOT, settings.MEDIA_URL)
 
   @permalink
   def get_absolute_url(self):
@@ -157,7 +153,7 @@ class Video(models.Model):
   """ Video model """
   title         = models.CharField(max_length=255)
   slug          = models.SlugField()
-  still         = models.FileField(upload_to=settings.MEDIA_ROOT+'video_stills/', blank=True, help_text='An image that will be used as a thumbnail.')
+  still         = models.FileField(upload_to='video_stills', blank=True, help_text='An image that will be used as a thumbnail.')
   video         = models.FilePathField(path=settings.MEDIA_ROOT+'videos/', recursive=True)
   description   = models.TextField(blank=True)
   tags          = TagField()
@@ -172,10 +168,6 @@ class Video(models.Model):
 
   def __unicode__(self):
     return '%s' % self.title
-
-  @property
-  def url(self):
-    return self.video.replace(settings.MEDIA_ROOT, settings.MEDIA_URL)
 
   @permalink
   def get_absolute_url(self):
