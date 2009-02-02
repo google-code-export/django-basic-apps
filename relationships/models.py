@@ -14,7 +14,7 @@ class RelationshipManager(models.Manager):
         friend_list = self.filter(from_user=user)
         follower_list = self.filter(to_user=user)
 
-        friend_id_list = friend_list & self.values_list('to_user', flat=True)
+        friend_id_list = self.filter(from_user=user).values_list('to_user', flat=True)
         fan_list = follower_list & self.exclude(from_user__in=friend_id_list)
 
         relationships = {
