@@ -1,0 +1,1 @@
+http://github.com/nathanborror/django-basic-apps for the most recent version of Django Basic Apps
